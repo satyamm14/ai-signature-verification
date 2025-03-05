@@ -1,4 +1,4 @@
-# AI-Powered Signature Verification (Web-Based) 🚀
+# AI-Powered Signature Verification
 
 ## Overview
 
