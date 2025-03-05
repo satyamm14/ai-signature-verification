@@ -30,23 +30,27 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="p-2 flex flex-col gap-y-2">
-      <h2>Signature Verification</h2>
+    <div className="p-2 flex flex-col gap-y-5">
+      <h1 className="text-4xl font-extrabold text-center">
+        Signature Verification
+      </h1>
       <div>
-        <h3>Signature 1</h3>
+        <h3 className="text-xl font-bold">Signature 1</h3>
         <SignaturePad onSave={setSignature1} />
       </div>
       <div>
-        <h3>Signature 2</h3>
+        <h3 className="text-xl font-bold">Signature 2</h3>
         <SignaturePad onSave={setSignature2} />
       </div>
-      <button
-        className="px-3 py-1 text-sm border rounded-md cursor-pointer"
-        onClick={handleVerify}
-        disabled={!model}
-      >
-        Verify
-      </button>
+      <div className="">
+        <button
+          className="px-3 py-1 text-sm border rounded-md cursor-pointer"
+          onClick={handleVerify}
+          disabled={!model}
+        >
+          Verify
+        </button>
+      </div>
       {result && <h3>Result: {result}</h3>}
     </div>
   );

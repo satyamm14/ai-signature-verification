@@ -1,12 +1,10 @@
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import * as tf from "@tensorflow/tfjs";
 
-// Load TensorFlow Model
 export async function loadModel(): Promise<mobilenet.MobileNet> {
   return await mobilenet.load();
 }
 
-// Convert Image to Tensor
 export async function processSignature(image: string): Promise<tf.Tensor> {
   return new Promise<tf.Tensor>((resolve) => {
     const img = new Image();
@@ -22,7 +20,6 @@ export async function processSignature(image: string): Promise<tf.Tensor> {
   });
 }
 
-// Compare Signatures
 export async function compareSignatures(
   model: mobilenet.MobileNet,
   sig1: string,
@@ -37,5 +34,5 @@ export async function compareSignatures(
   const similarity = tf.losses
     .cosineDistance(features1, features2, 0)
     .dataSync()[0];
-  return 1 - similarity; // Higher means more similar
+  return 1 - similarity;
 }
