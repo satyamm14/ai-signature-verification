@@ -8,11 +8,14 @@ const App: React.FC = () => {
   const [signature1, setSignature1] = useState<string | null>(null);
   const [signature2, setSignature2] = useState<string | null>(null);
   const [result, setResult] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function initModel() {
+      setIsLoading(true);
       const loadedModel = await loadModel();
       setModel(loadedModel);
+      setIsLoading(false);
     }
     initModel();
   }, []);
@@ -23,9 +26,11 @@ const App: React.FC = () => {
     console.log("Bef");
     const similarity = await compareSignatures(model, signature1, signature2);
     console.log("After");
+    const accuracy = +(+Number(similarity) * 100).toFixed(0);
     setResult(
       (similarity > 0.8 ? "Match: " : "Not a Match: ") +
-        Number(similarity).toPrecision(2)
+        (accuracy > 100 ? 100 : accuracy) +
+        "%"
     );
   };
 
@@ -34,6 +39,11 @@ const App: React.FC = () => {
       <h1 className="text-4xl font-extrabold text-center">
         Signature Verification
       </h1>
+      {isLoading && (
+        <h1 className="text-4xl font-extrabold text-center">
+          Model is Loading...
+        </h1>
+      )}
       <div>
         <h3 className="text-xl font-bold">Signature 1</h3>
         <SignaturePad onSave={setSignature1} />
@@ -51,7 +61,7 @@ const App: React.FC = () => {
           Verify
         </button>
       </div>
-      {result && <h3>Result: {result}</h3>}
+      {result && <h3>Result - {result}</h3>}
     </div>
   );
 };
