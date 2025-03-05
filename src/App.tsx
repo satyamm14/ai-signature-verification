@@ -28,7 +28,7 @@ const App: React.FC = () => {
     console.log("After");
     const accuracy = +(+Number(similarity) * 100).toFixed(0);
     setResult(
-      (similarity > 0.8 ? "Match: " : "Not a Match: ") +
+      (accuracy > 80 ? "Match: " : "Not a Match: ") +
         (accuracy > 100 ? 100 : accuracy) +
         "%"
     );
@@ -37,7 +37,7 @@ const App: React.FC = () => {
   return (
     <div className="p-2 flex flex-col gap-y-5">
       <h1 className="text-4xl font-extrabold text-center">
-        Signature Verification
+        Basic Signature Verification Prototype
       </h1>
       {isLoading && (
         <h1 className="text-4xl font-extrabold text-center">
