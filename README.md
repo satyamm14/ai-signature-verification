@@ -47,7 +47,7 @@ The app will be available at **http://localhost:5173**
 1. **Upload two signature images** or **draw on canvas** .
 2. AI processes them and **extracts features**.
 3. **Cosine similarity** is used to compare features.
-4. **Result:** ✅ "Match" or ❌ "Not a Match".
+4. **Result:**  "Match" or  "Not a Match".
 
 ---
 
